@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora do Dia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            text-decoration: none;
+
+        }
+
+        body {
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            flex-flow: column;
+            justify-content: space-evenly;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #titulo {
+            font-size: calc(2em + 4vmin);
+            font-weight: bold;
+            text-shadow: .5vmin .5vmin .5vmin black;
+        }
+
+        #corpo {
+            background-color: white;
+            box-shadow: 1vmin 1vmin 2vmin rgba(0, 0, 0, 0.5);
+            color: black;
+            min-width: 50vh;
+            width: 30vw;
+            height: 50vh;
+            font-size: 3.5vh;
+            border-radius: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-flow: column;
+        }
+
+        #imagem {
+            width: 30vh;
+            height: 30vh;
+            border-radius: 50%;
+        }
+
+        #cop {
+            font-size: calc(1em + 1vmin);
+            font-style: italic;
+            padding: 1.5vmin;
+            border: 1px solid cornsilk;
+            border-radius: 10vmin;
+            box-shadow: 0 0 1vmin black;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="titulo">
+        Hora do Dia
+    </header>
+    <section id="corpo">
+        <div id="t">
+
+        </div>
+        <div id="b">
+            <img id="imagem" src="">
+        </div>
+        <div id="msg">
+
+        </div>
+    </section>
+    <a href="https://twitter.com/Death_Draak" target="_blank">
+        <footer id="cop">
+            @Brian Luca
+        </footer>
+    </a>
+    <script>
+        let refre = window.setInterval(ref, 1000);
+
+        function ref() {
+            var tempo = new Date(),
+                horas = tempo.getHours(),
+                agora = horas + ':';
+
+            if (tempo.getMinutes() < 10) {
+                agora += '0' + tempo.getMinutes();
+            } else {
+                agora += tempo.getMinutes();
+            }
+
+            var title = document.getElementById('t'),
+                imagem = document.getElementById('imagem'),
+                msg = document.getElementById('msg'),
+                body = document.body;
+
+            title.innerHTML = `Agora são exatamente: <strong>${agora}</strong>`;
+            if (horas < 12) {
+                imagem.src = 'imagens/manha.jpg';
+                msg.innerHTML = 'Boa Manhã!';
+                body.style.backgroundColor = 'rgb(0, 132, 255)';
+            } else if (horas < 19) {
+                imagem.src = 'imagens/tarde.jpg';
+                body.style.backgroundColor = '#f5ba82';
+                msg.innerHTML = 'Boa Tarde!';
+            } else {
+                imagem.src = 'imagens/noite.jpg';
+                body.style.backgroundColor = '#191970';
+                msg.innerHTML = 'Boa Noite!';
+            }
+        }
+    </script>
+</body>
+
+</html>
